@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  author: Rocketplan
+  description: "Pure Supervisor role"
+  company: "Rocketplan, LLC"
+  license: "MIT"
+
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags:
+    - web
+    - supervisor
+
+dependencies: []

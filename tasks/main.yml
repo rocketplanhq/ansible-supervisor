@@ -1,0 +1,17 @@
+- name: 'install'
+  apt:
+    name: "supervisor{% if supervisor_version %}={{ supervisor_version }}{% endif %}"
+
+- name: 'update supervisor.conf'
+  template:
+    src: 'templates/supervisor/{{ supervisor_conf }}'
+    dest: '/etc/supervisor/supervisord.conf'
+  when: 'supervisor_conf|default("") != ""'
+  notify: 'supervisor: restart'
+
+- name: 'update conf.d'
+  template:
+    src: 'templates/supervisor/conf.d/{{ item }}'
+    dest: '/etc/supervisor/conf.d/{{ item }}'
+  with_items: "{{ supervisor_conf_d }}"
+  notify: 'supervisor: restart'
